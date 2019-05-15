@@ -1,0 +1,238 @@
+<html>
+<head>
+<title>Sign Up Page</title>
+</head>
+<style>
+#name,#userid,#email,#password,#repassword,#mobile{
+	background: #f5f5f5;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    border: none;
+    padding: 13px 10px;
+    width: 270px;
+    margin-bottom: 10px;
+    box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );
+    clear: both;
+	box-sizing: border-box;
+
+}
+#userid:focus,#name:focus,#email:focus,#password:focus,#repassword:focus,#mobile:focus {
+    background: #fff;
+    box-shadow: 0 0 0 3px #4CAF50, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 );
+    outline: none;
+}
+.button {
+	width:270px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+	background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+
+}
+.button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#box {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  border: 1px solid black;
+  background-color:transparent;
+  background-color:#CCC;
+  width:300px;
+  margin-left:80px;
+  margin-top:50px;
+  background: rgba(60,60,60,0.4);
+  z-index:-1;
+}
+a:link {
+    background-color: yellow;
+}
+
+a:visited {
+    background-color: cyan;
+}
+
+a:hover {
+    background-color: lightgreen;
+}
+
+a:active {
+    background-color: hotpink;
+} 
+
+</style>
+<body background="logo.png" style="background-size:auto;">
+	<div id="box">
+		<h1 style="text-align:center; color:black"><b><u>Sign Up For Free</u></b></h1>
+		<form id="register" action="confirm.html" type=get onsubmit="return validation()">
+			<table width="100%" cellspacing="0px" style="padding:1px" cellpadding="0px">
+   				 <tr><td>&nbsp;&nbsp;&nbsp;<input type="text" name="name" id="name" placeholder="Name" required ><p id="alert_name"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;&nbsp;<input type="text" name="regno" id="userid" maxlength="8" placeholder="Enter Your Unique ID" onchange="onkeyreg()" onkeyup="onkeyreg();"required ><p id="alert_userid" style="color:red"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;&nbsp;<input type="email" name="email" id="email" placeholder="Enter email" onkeypress="onkeyemail()" onchange="onkeyemail()"  required><p style="color:red"id="alert_email"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;&nbsp;<input  type="password" name="pass" onblur="onkeypass()" id="password" maxlength="15" placeholder="Create Password" min="8" required>
+			<p id="alert_pass" style="color:red"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;&nbsp;<input  type="password" id="repassword" maxlength="15"placeholder="Repeat Password" required onblur="onkeyrepass()"><p id="alert_repass"  style="color:red"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;&nbsp;<input type="tel" id="mobile" name="mobile" placeholder="Enter valid Mobile No." onblur="onkeymob();" maxlength="10" required><p id="alert_mobile" style="color:red"></p></td></tr>
+				<tr><td>&nbsp;&nbsp;<b><input type="submit" id="submit" class="button" value="REGISTER"></b></td></tr>
+			</table>
+		</form>
+    </div>
+<center>
+    <h4><a href="login.html">Already Have Account</a></h4></center>
+</body>
+<script type="text/javascript">
+
+function onkeypass()
+{
+	 var pass=document.getElementById("password").value;
+	 if(pass.search(" ")>-1)
+		  {
+			  pass=pass.trim();
+			  document.getElementById("password").value=pass;
+		  }
+	   if(pass.length<8)
+		  {
+			   document.getElementById("alert_pass").innerHTML="*Password should be of minimum 8 alphabet";
+			   document.getElementById("submit").disabled=true;
+			   document.getElementById("password").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+			   
+		  }
+		   else 
+		  {
+			  document.getElementById("password").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+			   document.getElementById("alert_pass").innerHTML="";
+			   document.getElementById("submit").disabled=false;
+		   document.getElementById("submit").style.cursor="auto";
+		  }
+		  
+		  
+}
+function onkeyemail() {
+    var x = document.getElementById("email").value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+	   document.getElementById("email").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+	   }
+	   else
+	   {
+		   document.getElementById("email").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+	   }
+}
+function onkeyrepass()
+{
+	var pass1=document.getElementById("password").value;
+	var pass2=document.getElementById("repassword").value;
+	if(pass1 == pass2)
+	{
+		document.getElementById("submit").disabled=false;
+		document.getElementById("alert_repass").innerHTML="";
+		document.getElementById("repassword").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+	}
+	else
+	{
+		document.getElementById("repassword").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+		document.getElementById("alert_repass").innerHTML="*Passwords Do Not Match";
+		var z=document.getElementById("submit").disabled=true;
+	}
+}
+function onkeyreg()
+{
+	var reg=document.getElementById("userid").value;
+	if(reg.length==8 && reg.charAt(0)=='1' && reg.charAt(1)=='1')	//true if incorret registration number
+	{
+	document.getElementById("userid").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+		  document.getElementById("submit").disabled=false;	
+	}
+	else
+	{
+		document.getElementById("submit").disabled=true;
+	   document.getElementById("userid").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+		 
+	}
+}
+function onkeymob()
+{
+	var mob=document.getElementById("mobile").value;
+	var phoneno = /^\d{10}$/;
+	if(mob.match(phoneno) && mob.length==10)
+	{
+	document.getElementById("mobile").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+		   document.getElementById("submit").disabled=false;	
+	}
+	else
+	{
+		document.getElementById("submit").disabled=true;
+	   document.getElementById("mobile").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+	}
+}
+function validation()
+{
+	var name=document.getElementById("name").value;
+	var reg=document.getElementById("userid").value;
+	var email=document.getElementById("email").value;
+	var pass1=document.getElementById("password").value;
+	var pass2=document.getElementById("repassword").value;
+	var mob=document.getElementById("mobile").value;
+	var phoneno = /^\d{10}$/;
+	if(reg.length==8 && reg.charAt(0)=='1' && reg.charAt(1)=='1')//for registration number
+	{
+	document.getElementById("userid").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+		document.getElementById("alert_userid").innerHTML="";	
+	}
+	else
+	{
+		document.getElementById("userid").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+		document.getElementById("alert_userid").innerHTML="*Invalid registration number";
+		return false;		
+	}
+	if(pass1.length<8)
+	{
+		document.getElementById("password").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+		document.getElementById("alert_pass").innerHTML="*Password should be of minimum 8 alphabet";
+		return false;
+	}
+	else
+	{
+		document.getElementById("password").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+		document.getElementById("alert_pass").innerHTML="";
+	}
+	if(pass1 == pass2)
+	{
+		document.getElementById("repassword").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+		document.getElementById("alert_repass").innerHTML="";
+	}
+	else
+	{
+		document.getElementById("repassword").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+		document.getElementById("alert_repass").innerHTML="Passwords Not Matched";
+		return false;
+	}	
+	if(mob.match(phoneno) && mob.length==10)
+	{
+	document.getElementById("mobile").style=" box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );";
+	document.getElementById("alert_mobile").innerHTML="";	
+	}
+	else
+	{
+	   document.getElementById("mobile").style="box-shadow: 0 0 0 3px red, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 )";
+	   document.getElementById("alert_mobile").innerHTML="*Invalid Mobile No.";
+	   return false;
+	}
+	return true;	
+}
+</script>
+</html>

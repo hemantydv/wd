@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{background-image:url("logo.png");}
+i{font-size:30px;}
+.q{
+padding-left: 100px;}
+form{
+background-color: silver;
+height:700px;
+width:450px;
+align:center;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color:#111;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+</style>
+</head>
+<body>
+<div class="q">
+<form action="book.php" method="POST">
+<fieldset>
+<legend><i>BOOKING<i></legend>
+<label>username</label><br/>
+<input type="text" placeholder="username" name="username" required><br/>
+<label>password</label><br/>
+<input type="password" placeholder="password" name="password" required><br/>
+<label>email id</label><br/>
+<input type="text" placeholder="email id" name="email" required><br/>
+<label>contact no.</label><br/>
+<input type="text" placeholder="contact no." name="contact" required><br/>
+<label>address</label><br/>
+<input type="text" placeholder="address" name="address" required><br/>
+<label>Pick up</label>   <label style="margin-left:150px;">Drof-off</label><br/>
+
+<input style="width:45%" id="date" type="date" placeholder="dd-mm-year" name="pickup" required> 
+<input style="width:48%"  id="date" type="date" placeholder="dd-mm-year" name="dropoff" required><br/>
+<label>Purpose Of Rental(optional)</label><br/>
+<input type="radio" name="tour">Tour
+<input type="radio" name="wedding">Wedding
+<input type="radio" name="other">Other<br/>
+<button><i>CLICK TO BOOKED</i></button>
+
+</fieldset>
+</form>
+</div>
+</body>
+</html>
